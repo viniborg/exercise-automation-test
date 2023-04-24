@@ -1,0 +1,10 @@
+*.pyc
+*.pyo
+*.log
+__pycache__/
+venv/
+env/
+lib/
+bin/
+config.ini
+db.sqlite3

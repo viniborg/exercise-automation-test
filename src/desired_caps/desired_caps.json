@@ -1,0 +1,12 @@
+{
+  "build": "Portal Gov automated test",
+  "video": true,
+  "visual": true,
+  "network": true,
+  "console": true,
+  "browser": {
+    "platform": "Windows 10",
+    "browserName": "chrome",
+    "version": "latest"
+  }
+}
