@@ -1,35 +1,11 @@
 import pytest
-from selenium.webdriver.common.by import By
+from src.page.home_page import HomePage
 
 
 @pytest.mark.usefixtures('driver')
-class TestLink:
-
-    def test_title(self, driver):
-        """
-        Verify click and title of page
-        :return: None
-        """
-        driver.get('https://lambdatest.github.io/sample-todo-app/')
-        driver.implicitly_wait(10)
-        driver.find_element(By.NAME, "li1").click()
-        driver.find_element(By.NAME, "li2").click()
-
-        title = "Sample page - lambdatest.com"
-        assert title == driver.title
-
-    def test_item(self, driver):
-        """
-        Verify item submission
-        :return: None
-        """
-        driver.get('https://lambdatest.github.io/sample-todo-app/')
-        sample_text = "Happy Testing at LambdaTest"
-        email_text_field = driver.find_element(By.ID, "sampletodotext")
-        email_text_field.send_keys(sample_text)
-
-        driver.find_element(By.ID, "addbutton").click()
-
-        li6 = driver.find_element(By.NAME, "li6")
-        # sys.stderr.write(li6)
-        # assert sample_text in li6
+class TestLogin:
+    def test_invalid_login(self, driver):
+        home_page = HomePage(driver).access_page()
+        login_page = home_page.access_login()
+        invalid_login_message = login_page.perform_login("a@a.com", "testing").invalid_login_is_displayed()
+        assert invalid_login_message is True
